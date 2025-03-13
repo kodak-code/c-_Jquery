@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Estilos {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css">
+}
+
+<div class="card">
+    <div class="card-header">
+        Empleados
+    </div>
+    <div class="card-body">
+        <table id="tb_empleados" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>IdEmpleado</th>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>Oficina</th>
+                    <th>Salario</th>
+                    <th>Telefono</th>
+                    <th>Fecha Ingreso</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script>
+        new DataTable('#tb_empleados', {
+             "ajax": {
+                 "url": "@Url.Action("ListarEmpleados", "Home")",
+                 "type": "GET",
+                 "datatype": "json"
+             },
+             "columns": [
+                    { "data": "idEmpleado" },
+                    { "data": "nombre" },
+                    { "data": "cargo" },
+                    { "data": "oficina" },
+                    { "data": "salario" },
+                    { "data": "telefono" },
+                    { "data": "fechaIngreso" }
+                ]
+         });
+    </script>
+}
